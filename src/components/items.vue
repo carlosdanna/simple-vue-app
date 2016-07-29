@@ -1,6 +1,6 @@
 <template>
     <div class="items">
-        <p>{{todoItem}}</p>
+        <p>{{todoItem}}<button v-on:click="testClickEvent">X</button></p>
     </div>
 </template>
 
@@ -12,7 +12,11 @@ export default {
     data () {
         return {
 
-            // item: "hello"
+        }
+    },
+    methods: {
+        testClickEvent (){
+            this.$dispatch('delete-todo',this.todoItem)
         }
     }
 }

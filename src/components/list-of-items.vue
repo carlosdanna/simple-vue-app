@@ -1,7 +1,6 @@
 <template>
     <div class="list-of-items">
         <div v-for="item in items">
-            <!-- {{item}} -->
             <items :todo-item="item"></items>
         </div>
     </div>
@@ -18,7 +17,7 @@ export default {
     },
     data () {
         return {
-            
+
         }
     }
 }
