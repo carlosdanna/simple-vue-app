@@ -17,6 +17,7 @@
     ]
   },
   "dependencies": {
+    "semantic-ui": "^2.2.2",
     "vue": "^1.0.0"
   },
   "devDependencies": {

@@ -1,13 +1,17 @@
 <template>
-    <div class="items">
-        <p>{{todoItem}}<button v-on:click="testClickEvent">X</button></p>
-    </div>
+    <tr>
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.nBooks}}</td>
+        <td>{{book.category}}</td>
+        <td>{{book.nIssuedBooks}}</td>
+    </tr>
 </template>
 
 <script>
 export default {
     props: {
-        todoItem: String
+        book: Object
     },
     data () {
         return {

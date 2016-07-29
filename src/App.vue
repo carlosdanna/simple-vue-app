@@ -1,22 +1,19 @@
 <template>
-  <div id="app">
-    <todo-list></todo-list>
-  </div>
+    <div class="ui container" id="app">
+        <menu-bar></menu-bar>
+        <book-component list-name="Book List"></book-component>
+    </div>
 </template>
 
 <script>
 
-import TodoList from './components/todo-list.vue'
+import BookComponent from './components/book-component.vue'
+import MenuBar from './components/menu-bar.vue'
 
 export default {
-  components: {
-    TodoList,
-  }
+    components: {
+        BookComponent,
+        MenuBar
+    }
 }
 </script>
-
-<style>
-body {
-  font-family: Helvetica, sans-serif;
-}
-</style>
