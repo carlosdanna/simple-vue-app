@@ -19,7 +19,10 @@ export default {
     },
     methods: {
         addElement (){
-            console.log("Logging input",this.TodoItem)
+            if (this.TodoItem !== "" && this.TodoItem !== null){
+                this.$dispatch('add-item', this.TodoItem)
+                this.TodoItem = "";
+            }
         }
     }
 }

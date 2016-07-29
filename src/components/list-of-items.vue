@@ -1,6 +1,6 @@
 <template>
     <div class="list-of-items">
-        <div v-for="item in items">
+        <div v-for="item in items" track-by="$index">
             <items :todo-item="item"></items>
         </div>
     </div>

@@ -27,6 +27,9 @@ export default {
         'delete-todo': function(item){
             var indexToDelete = this.items.indexOf(item);
             this.items.splice(indexToDelete,1);
+        },
+        'add-item': function(item){
+            this.items.push(item);
         }
     }
 }
