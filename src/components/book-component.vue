@@ -1,8 +1,14 @@
 <template>
     <div>
-        <h1 class="ui center aligned header">{{listName}}</h1>
-        <list-of-books :books="books"></list-of-books>
-        <add-new-book></add-new-book>
+        <div class="closeAddAnimation" v-if="!showAddBooks" transition="pulse">
+            <h1 class="ui center aligned header">{{listName}}</h1>
+            <list-of-books :books="books"></list-of-books>
+        </div>
+        <div class="showAddAnimation" v-if="showAddBooks" transition="pulse">
+            <add-new-book :books="books"></add-new-book>
+        </div>
+
+
     </div>
 
 </template>
@@ -21,6 +27,7 @@ export default {
         return {
             // Note: modifying `msg` below will not cause changes to occur with
             // hot-reload. As reloaded components preserve their initial state,
+            showAddBooks: false,
             books: [
                 {   name: "Watts", author: "Rios", nBooks: 151, category: "green", nIssuedBooks: 20         },
                 {   name: "Cote", author: "Bowers", nBooks: 943, category: "green", nIssuedBooks: 20        },
@@ -37,8 +44,9 @@ export default {
             var indexToDelete = this.items.indexOf(item);
             this.items.splice(indexToDelete,1);
         },
-        'add-item': function(item){
-            this.items.push(item);
+        'open-add-book': function(){
+            $('.closeAddAnimation').transition('pulse');
+            this.showAddBooks = true ;
         }
     }
 }
