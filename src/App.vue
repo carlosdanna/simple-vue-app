@@ -1,7 +1,7 @@
 <template>
     <div class="ui container" id="app">
         <menu-bar></menu-bar>
-        <book-component list-name="Book List"></book-component>
+        <router-view></router-view>
     </div>
 </template>
 

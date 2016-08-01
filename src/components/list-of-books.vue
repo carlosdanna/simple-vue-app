@@ -18,9 +18,9 @@
     </table>
     <div>
 
-        <button class="ui button primary" @click="openAddBook">Add new book</button>
-        <button class="ui button yellow">Edit book</button>
-        <button class="ui button red">Delete book</button>
+        <a class="ui button primary" v-link="{path: '/books/add'}">Add new book</a>
+        <a class="ui button yellow">Edit book</a>
+        <a class="ui button red">Delete book</a>
         <div class="ui right floated pagination menu">
             <a class="icon item active">
                 <i class="left chevron icon"></i>

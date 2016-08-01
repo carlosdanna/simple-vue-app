@@ -22,7 +22,7 @@ export default {
         AddNewBook,
         ListOfBooks
     },
-    props: ["listName"],
+    // props: ["listName"],
     data () {
         return {
             // Note: modifying `msg` below will not cause changes to occur with
@@ -45,7 +45,7 @@ export default {
             this.items.splice(indexToDelete,1);
         },
         'open-add-book': function(){
-            $('.closeAddAnimation').transition('pulse');
+            // $('.closeAddAnimation').transition('pulse');
             this.showAddBooks = true ;
         }
     }

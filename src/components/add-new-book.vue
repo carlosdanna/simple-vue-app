@@ -26,8 +26,8 @@
                 <label>Number of books issued</label>
                 <input type="text" v-model="books.issuedBooks" placeholder="Number of books issued"></input>
             </div>
-            <button class="ui button primary" @click="addElement">Add</button>
-            <button class="ui button red" @click="addElement">Cancel</button>
+            <a class="ui button primary" @click="addElement">Add</a>
+            <a v-link="{path: '/books'}" class="ui button red">Cancel</a>
         </form>
     </div>
 </template>
