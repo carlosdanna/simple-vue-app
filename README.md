@@ -1,6 +1,10 @@
-# another-vue-project
+# Sample Vue Project
 
 > A Vue.js project
+
+This project is just a sample of a simple application that can be built using Vue.
+
+Some of the tools used are vue-router and semantic-ui
 
 ## Build Setup
 
