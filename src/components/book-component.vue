@@ -27,18 +27,18 @@ export default {
         return {
             // Note: modifying `msg` below will not cause changes to occur with
             // hot-reload. As reloaded components preserve their initial state,
-            showAddBooks: false,
-            books: [
-                {   name: "Watts", author: "Rios", nBooks: 151, category: "green", nIssuedBooks: 20         },
-                {   name: "Cote", author: "Bowers", nBooks: 943, category: "green", nIssuedBooks: 20        },
-                {   name: "Dyer", author: "Clayton", nBooks: 104, category: "blue", nIssuedBooks: 24        },
-                {   name: "Allison", author: "Dillard", nBooks: 228, category: "brown", nIssuedBooks: 40    },
-                {   name: "Whitehead", author: "Johnnie", nBooks: 331, category: "blue", nIssuedBooks: 24   }
-            ]
+            books: []
             // modifying these values will have no effect.
         }
     },
-
+    created(){
+        this.$http.get('https://api.mlab.com/api/1/databases/library-project/collections/books?apiKey=QxnCpZ0YRbFTOVuTy0aosuh_o4oqCbjP').then( (response) => {
+            console.log(response.data);
+            this.books = response.data;
+        }, (error) => {
+            console.log(error);
+        })
+    },
     events: {
         'delete-todo': function(item){
             var indexToDelete = this.items.indexOf(item);

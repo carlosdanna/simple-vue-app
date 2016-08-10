@@ -44,9 +44,14 @@ export default {
     },
     methods: {
         addElement (){
-            if (this.TodoItem !== "" && this.TodoItem !== null){
-                this.$dispatch('add-item', this.TodoItem)
-                this.TodoItem = "";
+            if (this.books !== "" && this.books !== null){
+                // this.$dispatch('add-item', this.TodoItem)
+                this.$http.post("https://api.mlab.com/api/1/databases/library-project/collections/books?apiKey=QxnCpZ0YRbFTOVuTy0aosuh_o4oqCbjP", this.books).then((response)=>{
+                    this.TodoItem = "";
+                    console.log(response);
+                },(error)=>{
+                    console.log(error);
+                });
             }
         }
     }
