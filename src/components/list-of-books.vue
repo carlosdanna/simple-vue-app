@@ -1,7 +1,7 @@
 <template>
-    <table class="ui blue compact selectable striped celled  table">
+    <table class="ui blue selectable striped table">
         <thead>
-            <tr class="center aligned">
+            <tr>
                 <th>Name</th>
                 <th>Author</th>
                 <th># of Books</th>
@@ -9,18 +9,23 @@
                 <th>Books Issued</th>
             </tr>
         </thead>
-        <tbody  class="center aligned" v-for="book in books">
-            <tr is = "books" :book="book"></tr>
+        <tbody>
+            <!-- <tr is = "books" :book="book"></tr> -->
+            <tr v-for="book in books" @click="selectBook(books, book)" :class="{'active': book.isSelected}">
+                <td>{{book.name}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.nBooks}}</td>
+                <td>{{book.category}}</td>
+                <td>{{book.nIssuedBooks}}</td>
+            </tr>
         </tbody>
-        <tfoot class="full-width">
 
-        </tfoot>
     </table>
     <div>
 
         <a class="ui button primary" v-link="{path: '/books/add'}">Add new book</a>
         <a class="ui button yellow">Edit book</a>
-        <a class="ui button red">Delete book</a>
+        <a class="ui button red" @click="deleteBook()">Delete book</a>
         <div class="ui right floated pagination menu">
             <a class="icon item active">
                 <i class="left chevron icon"></i>
@@ -37,22 +42,37 @@
 </template>
 
 <script>
-import Books from './books.vue';
 export default {
     props:{
         books: [Object]
     },
-    components:{
-        Books
-    },
     data () {
         return {
+            bookSelected : {}
 
         }
     },
     methods: {
-        openAddBook (){
-            this.$dispatch('open-add-book');
+        selectBook (books, book){
+            for(var i=0;i<books.length;i++){
+                if(books[i] === book){
+                    book.isSelected = !book.isSelected;
+                    this.bookSelected = book.isSelected ? book : {};
+                }else{
+                    books[i].isSelected=false;
+                }
+            }
+        },
+        deleteBook (){
+            console.log(this.bookSelected._id.$oid)
+            this.$http.delete('https://api.mlab.com/api/1/databases/library-project/collections/books/'+ this.bookSelected._id.$oid +'?apiKey=QxnCpZ0YRbFTOVuTy0aosuh_o4oqCbjP')
+            .then( (response) => {
+                console.log(response);
+                console.log("book deleted");
+                this.$dispatch('load-books');
+            }, (error) => {
+                console.log(error);
+            })
         }
     }
 

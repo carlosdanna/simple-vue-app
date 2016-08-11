@@ -11,12 +11,15 @@ var router = new VueRouter();
 
 router.map({
     '/':{
+        name: 'home',
         component: BookComponent
     },
     '/books':{
+        name: 'books',
         component: BookComponent
     },
     '/books/add':{
+        name: 'books-add',
         component: AddNewBook
     }
 })

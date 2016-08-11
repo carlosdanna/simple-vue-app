@@ -1,13 +1,7 @@
 <template>
     <div>
-        <div class="closeAddAnimation" v-if="!showAddBooks" transition="pulse">
-            <h1 class="ui center aligned header">{{listName}}</h1>
-            <list-of-books :books="books"></list-of-books>
-        </div>
-        <div class="showAddAnimation" v-if="showAddBooks" transition="pulse">
-            <add-new-book :books="books"></add-new-book>
-        </div>
-
+        <h1 class="ui center aligned header">{{listName}}</h1>
+        <list-of-books :books="books"></list-of-books>
 
     </div>
 
@@ -32,12 +26,7 @@ export default {
         }
     },
     created(){
-        this.$http.get('https://api.mlab.com/api/1/databases/library-project/collections/books?apiKey=QxnCpZ0YRbFTOVuTy0aosuh_o4oqCbjP').then( (response) => {
-            console.log(response.data);
-            this.books = response.data;
-        }, (error) => {
-            console.log(error);
-        })
+        this.$emit('load-books');
     },
     events: {
         'delete-todo': function(item){
@@ -47,6 +36,15 @@ export default {
         'open-add-book': function(){
             // $('.closeAddAnimation').transition('pulse');
             this.showAddBooks = true ;
+        },
+        'load-books': function(){
+            this.$http.get('https://api.mlab.com/api/1/databases/library-project/collections/books?apiKey=QxnCpZ0YRbFTOVuTy0aosuh_o4oqCbjP')
+            .then( (response) => {
+                // console.log(response.data);
+                this.books = response.data;
+            }, (error) => {
+                console.log(error);
+            })
         }
     }
 }
